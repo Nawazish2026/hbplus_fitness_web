@@ -1,0 +1,49 @@
+{
+  "name": "hbplus-auth",
+  "version": "1.0.0",
+  "main": "expo-router/entry",
+  "engines": {
+    "node": ">=24.12.0 <25"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@react-native-google-signin/google-signin": "^17.0.0",
+    "babel-preset-expo": "~58.0.0",
+    "expo": "~58.0.23",
+    "expo-constants": "~58.0.15",
+    "expo-crypto": "~58.0.7",
+    "expo-linking": "~58.0.16",
+    "expo-router": "~58.0.30",
+    "expo-status-bar": "~58.0.4",
+    "expo-system-ui": "~58.0.7",
+    "expo-web-browser": "~58.0.7",
+    "firebase": "^13.2.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-native": "0.88.1",
+    "react-native-safe-area-context": "~5.11.1",
+    "react-native-screens": "~4.30.1",
+    "react-native-web": "^0.21.4"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^6.0.0",
+    "@types/node": "^26.6.6",
+    "@types/react": "~19.3.0",
+    "firebase-admin": "^14.5.0",
+    "firebase-tools": "^15.35.0",
+    "tsx": "^4.23.15",
+    "typescript": "~6.0.3"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "export:web": "expo export --platform web",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/access.test.ts",
+    "test:rules": "firebase emulators:exec --only firestore --project demo-hbplus-auth \"tsx --test tests/firestore.rules.test.ts\"",
+    "set-role": "tsx scripts/set-role.ts"
+  },
+  "private": true
+}
