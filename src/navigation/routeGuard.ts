@@ -2,10 +2,6 @@ import type { AuthStatus } from '../auth/types';
 
 export type AppRoute = '/login' | '/';
 
-/**
- * Where a settled session belongs. Loading and rejection render a blocking screen instead.
- * Protected groups never stay on screen for a signed-out visitor.
- */
 export function resolveRoute(status: AuthStatus, segments: readonly string[]): AppRoute | null {
   if (status === 'loading' || status === 'rejecting') {
     return null;

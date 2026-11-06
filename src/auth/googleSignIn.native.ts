@@ -42,7 +42,6 @@ function configureGoogleSignIn(): void {
   configured = true;
 }
 
-/** Native Google Sign-In SDK, then Firebase credential sign-in. */
 export async function signInWithGoogle(): Promise<void> {
   const auth = requireAuth();
   try {
@@ -75,9 +74,7 @@ export async function signOutFromGoogle(): Promise<void> {
   const services = getFirebaseServices();
   try {
     await GoogleSignin.signOut();
-  } catch {
-    // The native SDK may have no cached account.
-  }
+  } catch {}
   if (services) {
     await signOut(services.auth);
   }

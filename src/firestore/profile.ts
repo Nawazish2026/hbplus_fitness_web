@@ -40,7 +40,6 @@ function requireDb() {
   return services.db;
 }
 
-/** Writes the signed-in profile only after the domain gate has allowed the account. */
 export async function syncAuthorizedProfile(account: AccountInput): Promise<void> {
   const decision = evaluateAccess(account);
   if (decision.action === 'sign-out' || !account.email) {

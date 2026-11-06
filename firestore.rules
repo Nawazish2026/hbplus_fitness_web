@@ -1,6 +1,5 @@
 rules_version = '2';
 
-// Enforced on the server. Client domain checks are not sufficient.
 service cloud.firestore {
   match /databases/{database}/documents {
     function isOfficial() {

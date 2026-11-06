@@ -1,7 +1,6 @@
 import { Platform, type TextStyle, type ViewStyle } from 'react-native';
 
 export const colors = {
-  // Drawn from HB+'s warm editorial palette: cream, ink, rust and muted teal.
   background: '#F5F2E9',
   backgroundRaised: '#FFFDF8',
   surface: '#EDEAE7',

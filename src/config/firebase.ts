@@ -29,9 +29,7 @@ export function getFirebaseServices(): FirebaseServices | null {
     try {
       connectAuthEmulator(auth, publicConfig.authEmulatorUrl, { disableWarnings: true });
       connectFirestoreEmulator(db, publicConfig.firestoreEmulatorHost, publicConfig.firestoreEmulatorPort);
-    } catch {
-      // Hot reload can initialize Firebase twice. The emulator connection is already active.
-    }
+    } catch {}
   }
 
   services = { app, auth, db };

@@ -7,7 +7,6 @@ import {
   type Auth,
 } from 'firebase/auth';
 
-/** AsyncStorage holds the Firebase session between native app launches. */
 export function createAuth(app: FirebaseApp): Auth {
   try {
     return initializeAuth(app, {

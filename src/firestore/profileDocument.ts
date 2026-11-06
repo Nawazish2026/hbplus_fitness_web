@@ -48,10 +48,6 @@ export function sanitizePhotoUrl(value: string | null | undefined): string | nul
   return trimmed;
 }
 
-/**
- * Role always comes from the signed custom claim. Callers cannot pass a role.
- * Updates omit role so a client cannot promote or demote the stored profile.
- */
 export function buildProfileCreate(input: {
   uid: string;
   email: string;

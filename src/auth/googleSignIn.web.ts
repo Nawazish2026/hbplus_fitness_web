@@ -32,7 +32,6 @@ function googleProvider(): GoogleAuthProvider {
   return provider;
 }
 
-/** Firebase Google popup, with a full-page redirect when the browser blocks popups. */
 export async function signInWithGoogle(): Promise<void> {
   const auth = requireAuth();
   await setPersistence(auth, browserLocalPersistence);

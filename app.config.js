@@ -4,7 +4,6 @@ const androidServices = './google-services.json';
 const iosServices = './GoogleService-Info.plist';
 const hasNativeGoogleConfig = existsSync(androidServices) && existsSync(iosServices);
 
-/** @type {import('expo/config').ExpoConfig} */
 const config = {
   name: 'HBPlus Auth',
   slug: 'hbplus-auth',

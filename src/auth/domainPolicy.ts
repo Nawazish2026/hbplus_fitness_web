@@ -1,4 +1,3 @@
-/** Official workspace domain. Google's `hd` hint is not a security control. */
 export const OFFICIAL_EMAIL_DOMAIN = 'hbplus.fit';
 export const ACCESS_RESTRICTED_MESSAGE =
   'Access restricted. Please login using your official domain email.';
@@ -14,9 +13,6 @@ export type AccessDecision =
   | { action: 'allow' }
   | { action: 'sign-out'; message: string };
 
-/**
- * Verified addresses at exactly @hbplus.fit. Subdomains and look-alike domains fail.
- */
 export function isOfficialVerifiedEmail(
   email: string | null | undefined,
   emailVerified: boolean,
@@ -43,7 +39,6 @@ export function isOfficialVerifiedEmail(
   return true;
 }
 
-/** Central sign-in gate. Unauthorized sessions must be revoked immediately. */
 export function evaluateAccess(identity: EmailIdentity): AccessDecision {
   if (isOfficialVerifiedEmail(identity.email, identity.emailVerified)) {
     return { action: 'allow' };

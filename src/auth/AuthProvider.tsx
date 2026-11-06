@@ -167,8 +167,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setActionError(null);
     try {
       await signOutFromGoogle();
-      // On web, reload the public route so a signed-out visitor never retains a
-      // protected screen in the SPA history or a stale local preview layer.
       if (Platform.OS === 'web' && typeof window !== 'undefined') {
         window.location.assign('/login');
       }

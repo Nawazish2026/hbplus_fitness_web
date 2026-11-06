@@ -6,7 +6,6 @@ import {
   type Auth,
 } from 'firebase/auth';
 
-/** Browser local persistence keeps the Firebase session across reloads. */
 export function createAuth(app: FirebaseApp): Auth {
   try {
     return initializeAuth(app, {
