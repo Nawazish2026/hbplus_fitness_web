@@ -26,6 +26,18 @@ firestore.rules     Server-side access control
 scripts/set-role.ts Server-only admin claim tool
 ```
 
+## Run on every platform
+
+This is one Expo codebase. The same `src/` folder runs on a web browser, Android emulator/device, and iOS Simulator/device.
+
+| Platform | Command | Google sign-in requirement |
+| --- | --- | --- |
+| Web browser | `npm run web` | Firebase Web configuration in `.env` |
+| Android emulator/device | `npx expo run:android` | Firebase configuration, `google-services.json`, and a native development build |
+| iOS Simulator/device | `npx expo run:ios` | Firebase configuration, `GoogleService-Info.plist`, and a native development build |
+
+Expo Go is not supported for Google sign-in because the app uses a native Google Sign-In module.
+
 ## Install
 
 Use Node.js 24.12 or newer and npm.
@@ -44,9 +56,11 @@ Fill `.env` from the Firebase console. Do not commit `.env`, `service-account.js
 3. Add every host you use under **Authentication → Settings → Authorized domains**, including `localhost` and the Netlify domain.
 4. Create a Cloud Firestore database.
 5. In Google Cloud → Credentials, copy the **Web client ID** into `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID`. Android and iOS must send that ID so Firebase can verify the ID token. Do not put a client secret in the app.
-6. Create an iOS OAuth client for bundle ID `fit.hbplus.auth` and an Android OAuth client for package `fit.hbplus.auth`. Add the debug and Play App Signing SHA-1 fingerprints to the Android client and to the Firebase Android app.
-7. Download `GoogleService-Info.plist` and `google-services.json`. Place them in the project root. They are gitignored. When both files are present, `app.config.js` enables the Google Sign-In config plugin and points Expo at them.
-8. Deploy the rules:
+6. Register an Android Firebase app with package name `fit.hbplus.auth`, then download `google-services.json` into the project root. Add the debug and Play App Signing SHA-1 fingerprints to the Android app/OAuth client.
+7. Register an iOS Firebase app with bundle ID `fit.hbplus.auth`, then download `GoogleService-Info.plist` into the project root.
+8. Create iOS and Android OAuth clients in the same Google Cloud project. Put their IDs in `EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID` and `EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID`; keep the Web client ID in `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID`.
+9. The two native Firebase files are gitignored. When present, `app.config.js` enables the Google Sign-In config plugin and points Expo at them.
+10. Deploy the rules:
 
 ```bash
 npx firebase deploy --only firestore:rules
@@ -97,7 +111,7 @@ npm run export:web
 
 The export is written to `dist/` as a single-page app. `netlify.toml` publishes that directory and redirects every path to `index.html`. In Netlify, set the same `EXPO_PUBLIC_*` variables before the build. They are inlined into the bundle.
 
-Android and iOS need a development or store build. Expo Go does not include the native Google Sign-In module.
+Android and iOS need a development or store build. Expo Go does not include the native Google Sign-In module. Ensure the Android and iOS Firebase files listed above are in the project root before running either command.
 
 ```bash
 npx expo run:android
